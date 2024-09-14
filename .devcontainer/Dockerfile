@@ -1,5 +1,7 @@
 FROM mcr.microsoft.com/devcontainers/python:1-3.10-bullseye
 
+ENV PYTHONPATH=/workspace
+
 RUN python -m venv venv
 RUN . venv/bin/activate
 RUN pip install -U pip setuptools
