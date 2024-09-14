@@ -8,15 +8,17 @@ from pydantic import BaseModel, ConfigDict
 class Entity(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
-    id_field: str = "id"
+    __id_field: str = "id"
 
     def set_id_field(self, id_field: str):
-        self.id_field = id_field
+        self.__id_field = id_field
+
+        return self
 
     def __eq__(self, value: object) -> bool:
         if not isinstance(value, Entity):
             return False
-        return getattr(self, self.id_field) == getattr(value, self.id_field)
+        return getattr(self, self.__id_field) == getattr(value, self.__id_field)
 
     @classmethod
     def generate_id(cls):
