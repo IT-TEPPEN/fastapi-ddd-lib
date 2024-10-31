@@ -31,7 +31,7 @@ class SessionManager:
         self.__session.close()
 
 
-class BaseRepository(IBaseRepository[Session]):
+class SQLAlchemyRepository(IBaseRepository[Session]):
     def __init__(self, sessionmaker: sessionmaker[Session]) -> None:
         self.__sessionmaker = sessionmaker
 
