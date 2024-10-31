@@ -37,7 +37,7 @@ jobs:
       - name: Get new version
         id: new-version
         run: |
-          NEW_VERSION=$(poetry version ${{ github.event.inputs.release-version }}) && echo "NEW_VERSION=${NEW_VERSION}" >> $GITHUB_ENV
+          poetry version ${{ github.event.inputs.release-version }} && echo "NEW_VERSION=$(poetry version -s)" >> $GITHUB_ENV
         env:
           RELEASE_VERSION: ${{ github.event.inputs.release-version }}
 
