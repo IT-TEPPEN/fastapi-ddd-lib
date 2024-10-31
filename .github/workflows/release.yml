@@ -37,6 +37,7 @@ jobs:
 
       - name: Publish Package
         run: |
+          poetry build
           poetry publish
         env:
           PYPI: ${{ secrets.PYPI }}
