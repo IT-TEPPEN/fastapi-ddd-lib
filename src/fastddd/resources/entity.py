@@ -1,6 +1,9 @@
 from pydantic import BaseModel, ValidationError
+from typing import TypeVar
 
 from ..errors.app import ValidationException
+
+T = TypeVar("T")
 
 
 def entity(id_field: str = "id", validation_exception=None):
@@ -17,7 +20,7 @@ def entity(id_field: str = "id", validation_exception=None):
         validation_exception (Exception): ValidationErrorをスローした場合にスローする例外クラス
     """
 
-    def decorator(cls):
+    def decorator(cls: T) -> T:
         # pydanticのBaseModelを継承しているかチェック
         if not issubclass(cls, BaseModel):
             raise ValueError("Entity class must inherit BaseModel")
