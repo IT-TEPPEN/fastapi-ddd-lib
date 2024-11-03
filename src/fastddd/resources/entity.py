@@ -54,7 +54,7 @@ def entity(id_field: str = "id", validation_exception=None):
             # 例外処理を追加
             def new_with_exception(cls, *args, **kwargs):
                 try:
-                    return new(cls, *args, **kwargs)
+                    return new(*args, **kwargs)
                 except ValidationError as e:
                     if validation_exception is None:
                         raise ValidationException(
