@@ -25,10 +25,6 @@ def entity(id_field: str = "id", validation_exception=None):
         if not issubclass(cls, BaseModel):
             raise ValueError("Entity class must inherit BaseModel")
 
-        # model_configがない場合は追加
-        if not hasattr(cls, "model_config"):
-            cls.model_config = ConfigDict(from_attributes=True)
-
         # new関数が定義されていない場合は、デフォルトのnew関数を定義する
         if not hasattr(cls, "new"):
             # クラス名を取得

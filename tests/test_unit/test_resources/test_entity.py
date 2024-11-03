@@ -1,11 +1,13 @@
 from src.fastddd.resources import entity
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 from src.fastddd.errors.app import ValidationException
 
 
 @entity()
 class Entity1Test(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: str
     name: str
 
@@ -17,6 +19,8 @@ class Entity2TestValidationException(ValidationException):
 
 @entity(id_field="user_id", validation_exception=Entity2TestValidationException)
 class Entity2Test(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     user_id: str
     name: str
 
@@ -118,6 +122,8 @@ def test_Entity_例外クラスを指定しているEntityは指定の例外が�
 
 @entity()
 class Entity3Test(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: str
     name: str
     temp: str
