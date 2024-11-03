@@ -1,9 +1,10 @@
 from fastapi import FastAPI, Request, HTTPException
 
+from .resources import entity
 from .errors.app import DtoValidationException, PermissionDeniedException
 
 
-__all__ = ["setup"]
+__all__ = ["setup", "entity"]
 
 
 def setup(app: FastAPI):
