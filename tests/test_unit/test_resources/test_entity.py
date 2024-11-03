@@ -114,3 +114,21 @@ def test_Entity_例外クラスを指定しているEntityは指定の例外が�
         assert str(e) == "[ERR999] Entity2Test validation error"
     except Exception as e:
         assert False
+
+
+@entity()
+class Entity3Test(BaseModel):
+    id: str
+    name: str
+    temp: str
+
+    @classmethod
+    def new(cls, id, name):
+        return cls(id=id, name=name, temp="temp")
+
+
+def test_entity_newメソッドが定義されている場合はそのメソッドを利用して初期化():
+    john = Entity3Test.new("id1", "John")
+    assert john.id == "id1"
+    assert john.name == "John"
+    assert john.temp == "temp"
