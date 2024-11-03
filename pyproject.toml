@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fastddd"
-version = "0.3.2"
+version = "0.3.3"
 description = "Python library designed to simplify the implementation of Domain-Driven Design (DDD) principles in your software projects"
 authors = ["TEPPEN <yk.iteppen@gmail.com>"]
 license = "MIT"
