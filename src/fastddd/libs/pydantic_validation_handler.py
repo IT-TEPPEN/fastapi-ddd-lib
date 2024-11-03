@@ -20,14 +20,15 @@ class PydanticErrorType(str, Enum):
     STRING_TOO_LONG = "string_too_long"
     GREATER_THAN_EQUAL = "greater_than_equal"
     VALUE_ERROR = "value_error"
+    MISSING_ERROR = "missing"
 
 
 class PydanticError(BaseModel):
     type: PydanticErrorType
     loc: tuple
     msg: str
-    input: str | int
-    ctx: dict
+    input: str | int | dict
+    ctx: dict | None = None
     url: str | None = None
 
 
@@ -66,6 +67,8 @@ def convert_pydantic_exception(
             elif error.type == PydanticErrorType.VALUE_ERROR:
                 if "email address" in error.msg:
                     msg = "正しいメールアドレスを入力してください。"
+            elif error.type == PydanticErrorType.MISSING_ERROR:
+                msg = "必須項目です。"
 
             readable_errors.append(
                 ReadableError(
